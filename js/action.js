@@ -1,0 +1,2 @@
+renderTable(account);
+renderMonths(months);
