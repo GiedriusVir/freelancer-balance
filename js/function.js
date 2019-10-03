@@ -74,3 +74,65 @@ function sumBalance() {
 
     return document.querySelector('.table-footer .cell:last-child').innerHTML = sum+'.00 Eur';
 }
+
+function income() {
+    let min,
+        max,
+        arr = [];
+        income = document.querySelectorAll('.table-row .cell:nth-child(3)'),
+        minIndex = null;
+        maxIndex = null;
+    
+    income.forEach(item => {
+        if (item.innerHTML != '-') {
+            arr.push(parseInt(item.innerHTML));
+        }
+    });
+    min = Math.min(...arr);
+    max = Math.max(...arr);
+
+    income.forEach((item, index) => {
+        if (parseInt(item.innerHTML) == min) {
+            minIndex = index;
+        }
+        if (parseInt(item.innerHTML) == max) {
+            maxIndex = index;
+        }
+    });
+    
+    return document.querySelector('.summary-list .item:first-child .value').innerHTML = 
+            document.querySelectorAll('.table-row .cell:nth-child(2)')[minIndex].innerHTML,
+           document.querySelector('.summary-list .item:nth-child(2) .value').innerHTML = 
+            document.querySelectorAll('.table-row .cell:nth-child(2)')[maxIndex].innerHTML;
+}
+
+function expence() {
+    let min,
+        max,
+        arr = [];
+        expence = document.querySelectorAll('.table-row .cell:nth-child(4)'),
+        minIndex = null;
+        maxIndex = null;
+    
+    expence.forEach(item => {
+        if (item.innerHTML != '-') {
+            arr.push(parseInt(item.innerHTML));
+        }
+    });
+    min = Math.min(...arr);
+    max = Math.max(...arr);
+
+    expence.forEach((item, index) => {
+        if (parseInt(item.innerHTML) == min) {
+            minIndex = index;
+        }
+        if (parseInt(item.innerHTML) == max) {
+            maxIndex = index;
+        }
+    });
+    
+    return document.querySelector('.summary-list .item:nth-child(3) .value').innerHTML = 
+            document.querySelectorAll('.table-row .cell:nth-child(2)')[minIndex].innerHTML,
+           document.querySelector('.summary-list .item:last-child .value').innerHTML = 
+            document.querySelectorAll('.table-row .cell:nth-child(2)')[maxIndex].innerHTML;
+}
