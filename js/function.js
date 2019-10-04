@@ -1,8 +1,15 @@
 function renderTable(data) {
     let HTML = '';
     let balance = 0;
+
+    data.sort(function(a, b){
+        return a.month - b.month;
+    });
+
     for (let i = 0; i < data.length; i++){
         let item = data[i];
+        
+
 
         if (item.income && item.expense) {
             balance = item.income - item.expense +'.00 Eur';
