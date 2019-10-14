@@ -1,5 +1,5 @@
 renderTable(account);
-renderMonths(months);
+// renderMonths(months);
 sumIncome();
 sumExpence();
 sumBalance();

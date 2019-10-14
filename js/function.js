@@ -1,10 +1,9 @@
 function renderTable(data) {
     let HTML = '';
     let balance = 0;
+    const eur = '.00 Eur';
 
-    data.sort(function(a, b){
-        return a.month - b.month;
-    });
+    data.sort((a, b) => a.month - b.month);
 
     for (let i = 0; i < data.length; i++){
         let item = data[i];
@@ -12,24 +11,24 @@ function renderTable(data) {
 
 
         if (item.income && item.expense) {
-            balance = item.income - item.expense +'.00 Eur';
-            item.income = item.income+'.00 Eur';
-            item.expense = item.expense+'.00 Eur';
+            balance = item.income - item.expense +eur;
+            item.income = item.income+eur;
+            item.expense = item.expense+eur;
         }
         if (!item.income) {
-            balance = -item.expense +'.00 Eur';
+            balance = -item.expense +eur;
             item.income = '-';
-            item.expense = item.expense+'.00 Eur';
+            item.expense = item.expense+eur;
         }
         if (!item.expense) {
-            balance = item.income +'.00 Eur';
-            item.income = item.income+'.00 Eur';
+            balance = item.income +eur;
+            item.income = item.income+eur;
             item.expense = '-';
         }
 
         HTML += `<div class="table-row">
                     <div class="cell">${i+1}</div>
-                    <div class="cell">${item.month}</div>
+                    <div class="cell">${months[item.month-1]}</div>
                     <div class="cell">${item.income}</div>
                     <div class="cell">${item.expense}</div>
                     <div class="cell">${balance}</div>
@@ -39,15 +38,15 @@ function renderTable(data) {
     return document.querySelector('.table-content').innerHTML = HTML;
 }
 
-function renderMonths(data) {
-    let monthNum = document.querySelectorAll('.table-row .cell:nth-child(2)');
+// function renderMonths(data) {
+//     let monthNum = document.querySelectorAll('.table-row .cell:nth-child(2)');
 
-    monthNum.forEach(item => {
-        item.innerHTML = data[item.innerHTML-1];
-    });
+//     monthNum.forEach(item => {
+//         item.innerHTML = data[item.innerHTML-1];
+//     });
 
-    return;
-}
+//     return;
+// }
 
 function sumIncome() {
     let income = document.querySelectorAll('.table-row .cell:nth-child(3)');
